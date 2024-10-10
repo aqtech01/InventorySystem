@@ -1,10 +1,10 @@
 import Image from "next/image";
 import MainPage from "./components/Main";
-
+import Header from "./components/Header";
 export default function Home() {
   return (
     <>
-      <MainPage>Welcome to the Main Page</MainPage>
+      <Header/>
     </>
   );
 }
