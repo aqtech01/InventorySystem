@@ -1,219 +1,73 @@
-import React from "react";
-import { logo } from "../../../Public/assets/images/logo1.png";
-import Image from "next/image";
+"use client";
+import React, { useState } from 'react';
+import Image from 'next/image';
+import profile from '../../../Public/assets/images/Profile.png';
+import { FaSearch } from 'react-icons/fa';
+
 const Header = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prev) => !prev);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   return (
-    <div>
-      <nav class="bg-sky-950 border-gray-200 dark:bg-gray-900">
-        <div class="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto p-4">
-          <a
-            href="https://flowbite.com"
-            class="flex items-center space-x-3 rtl:space-x-reverse"
-          >
-            <Image src={logo} width={40} height={40} alt=" Logo" />
-            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
-          </a>
-          <div class="flex items-center md:order-2 space-x-1 md:space-x-2 rtl:space-x-reverse">
-            <a
-              href="#"
-              class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-            >
-              Login
-            </a>
-            <a
-              href="#"
-              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-            >
-              Sign up
-            </a>
-            <button
-              data-collapse-toggle="mega-menu"
-              type="button"
-              class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-              aria-controls="mega-menu"
-              aria-expanded="false"
-            >
-              <span class="sr-only">Open main menu</span>
-              <svg
-                class="w-5 h-5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 17 14"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 1h15M1 7h15M1 13h15"
-                />
-              </svg>
-            </button>
+    <div className="w-full relative">
+      <nav className="bg-white border-gray-200 dark:bg-gray-900 flex justify-between items-center h-16 px-4 shadow shadow-black">
+        <a href="https://flowbite.com" className="flex items-center space-x-3">
+          <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Inventory</span>
+        </a>
+
+        <div className="flex items-center gap-10">
+          <div className="flex items-center border rounded-lg overflow-hidden">
+            <FaSearch className="p-2 text-gray-500" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              placeholder="Search..."
+              className="border-0 focus:ring-0 p-2"
+            />
           </div>
-          <div
-            id="mega-menu"
-            class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-          >
-            <ul class="flex flex-col mt-4 font-medium md:flex-row md:mt-0 md:space-x-8 rtl:space-x-reverse">
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 px-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-blue-500 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                  aria-current="page"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <button
-                  id="mega-menu-dropdown-button"
-                  data-dropdown-toggle="mega-menu-dropdown"
-                  class="flex items-center justify-between w-full py-2 px-3 font-medium text-gray-900 border-b border-gray-100 md:w-auto hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Company{" "}
-                  <svg
-                    class="w-2.5 h-2.5 ms-3"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 10 6"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="m1 1 4 4 4-4"
-                    />
-                  </svg>
-                </button>
-                <div
-                  id="mega-menu-dropdown"
-                  class="absolute z-10 grid hidden w-auto grid-cols-2 text-sm bg-white border border-gray-100 rounded-lg shadow-md dark:border-gray-700 md:grid-cols-3 dark:bg-gray-700"
-                >
-                  <div class="p-4 pb-0 text-gray-900 md:pb-4 dark:text-white">
-                    <ul
-                      class="space-y-4"
-                      aria-labelledby="mega-menu-dropdown-button"
-                    >
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500"
-                        >
-                          Stock
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500"
-                        >
-                          Transaction
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500"
-                        >
-                          Report
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500"
-                        >
-                          Pro Version
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="p-4 pb-0 text-gray-900 md:pb-4 dark:text-white">
-                    <ul class="space-y-4">
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500"
-                        >
-                          Blog
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500"
-                        >
-                          Newsletter
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500"
-                        >
-                          Playground
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500"
-                        >
-                          License
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="p-4">
-                    <ul class="space-y-4">
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500"
-                        >
-                          Contact Us
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500"
-                        >
-                          Support Center
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500"
-                        >
-                          Terms
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+
+          <div className="relative">
+            <button
+              onClick={toggleDropdown}
+              className="flex bg-gray-800 rounded-full"
+              type="button"
+            >
+              <span className="sr-only">Open user menu</span>
+              <Image className="rounded-full" src={profile} width={40} height={40} alt="user photo" />
+            </button>
+
+            {/* Dropdown menu */}
+            {isDropdownOpen && (
+              <div className="absolute right-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                  <div>Bonnie Green</div>
+                  <div className="font-medium truncate">name@flowbite.com</div>
                 </div>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 px-3 text-gray-900 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Team
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 px-3 text-gray-900 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Contact
-                </a>
-              </li>
-            </ul>
+                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
+                  <li>
+                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                  </li>
+                  <li>
+                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                  </li>
+                  <li>
+                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                  </li>
+                </ul>
+                <div className="py-2">
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </nav>
