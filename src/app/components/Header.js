@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import profile from '../../../Public/assets/images/Profile.png';
-import { FaSearch } from 'react-icons/fa';
+// import { FaSearch } from 'react-icons/fa';
 
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -25,46 +25,42 @@ const Header = () => {
 
         <div className="flex items-center gap-10">
           <div className="flex items-center border rounded-lg overflow-hidden">
-            <FaSearch className="p-2 text-gray-500" />
+            {/* <FaSearch className=" text-gray-500" /> */}
             <input
               type="text"
               value={searchQuery}
               onChange={handleSearchChange}
               placeholder="Search..."
-              className="border-0 focus:ring-0 p-2"
+              className="border-2 focus:ring-0 p-2 text-black"
             />
           </div>
 
           <div className="relative">
             <button
               onClick={toggleDropdown}
-              className="flex bg-gray-800 rounded-full"
+              className="flex bg-sky-950 rounded-full"
               type="button"
             >
               <span className="sr-only">Open user menu</span>
               <Image className="rounded-full" src={profile} width={40} height={40} alt="user photo" />
             </button>
 
-            {/* Dropdown menu */}
+            {/* Dropdown menu  */}
             {isDropdownOpen && (
               <div className="absolute right-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                  <div>Bonnie Green</div>
+                <div className="px-4 py-3 text-sm text-white bg-cyan-950 dark:text-white">
                   <div className="font-medium truncate">name@flowbite.com</div>
                 </div>
                 <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
                   <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My Profile</a>
                   </li>
                   <li>
                     <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
                   </li>
-                  <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                  </li>
                 </ul>
                 <div className="py-2">
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign Out</a>
                 </div>
               </div>
             )}
